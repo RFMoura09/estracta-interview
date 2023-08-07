@@ -26,7 +26,7 @@ begin
 
 	return cnpj_dec;
 end
-$$ language plpgsql
+$$ language plpgsql;
 
 create or replace function get_companies(
 	_entries numeric default 25,
@@ -48,7 +48,7 @@ create or replace function get_companies(
 	case when _order_cnae then lower(cnae) end asc
 	limit _entries
 	offset _page * _entries
-$$ language sql
+$$ language sql;
 
 create or replace function get_companies_page_count(
 	_entries numeric default 25,
@@ -58,7 +58,7 @@ create or replace function get_companies_page_count(
 	from companies
 	where 
 	case when _name is not null then lower(name) like '%' || lower(_name) || '%' else true end
-$$ language sql
+$$ language sql;
 
 create or replace function edit_company(
 	_cnpj companies.cnpj%type,
@@ -77,11 +77,11 @@ create or replace function edit_company(
 		else cnae 
 	end
 	where cnpj = _cnpj
-$$ language sql
+$$ language sql;
 
 create or replace function delete_company(
 	_cnpj companies.cnpj%type
 ) returns void as $$
 	delete from companies
 	where cnpj = _cnpj
-$$ language sql
+$$ language sql;

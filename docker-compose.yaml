@@ -6,7 +6,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_DATABASE=teste
+      - POSTGRES_DB=teste
       - POSTGRES_USER=estracta
       - POSTGRES_PASSWORD=estracta
   migration:
@@ -17,14 +17,14 @@ services:
     depends_on:
       - db
 
-  back:
-    build:
-      context: ./back
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
-    depends_on:
-      - db
+  # back:
+  #   build:
+  #     context: ./back
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5000:5000"
+  #   depends_on:
+  #     - db
 
   front:
     build:
@@ -32,5 +32,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - back
+    # depends_on:
+    #   - back
