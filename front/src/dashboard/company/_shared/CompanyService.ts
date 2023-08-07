@@ -1,6 +1,4 @@
-import axios from 'axios';
-import { AddCompanyModel } from './../add-company/AddCompanyProps';
-import { CompanyModel, CompanyUtils, DeleteCompanyModel, EditCompanyModel, GetCompaniesParams } from "./CompaniesModels";
+import { AddCompanyModel, CompanyModel, CompanyUtils, DeleteCompanyModel, EditCompanyModel, GetCompaniesParams } from "./CompaniesModels";
 import { api, apiConfig } from '../../../_shared/http/Api';
 
 class CompanyService {

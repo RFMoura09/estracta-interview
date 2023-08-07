@@ -1,6 +1,6 @@
 import PageTitle from '../../_shared/page-title/PageTitle'
 import InputMask from 'react-input-mask';
-import { CompanyUtils, DeleteCompanyModel, DeleteCompanyUtils, EditCompanyUtils } from '../_shared/CompaniesModels';
+import { CompanyUtils, DeleteCompanyModel, DeleteCompanyUtils } from '../_shared/CompaniesModels';
 import { useLoader } from '../../../_shared/ui/loader/LoaderContext';
 import { useToast } from '../../../_shared/ui/toast/ToastContext';
 import { useNavigate } from 'react-router-dom';
