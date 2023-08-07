@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DATABASE=teste
+      - POSTGRES_USER=estracta
+      - POSTGRES_PASSWORD=estracta
+  migration:
+    image: flyway/flyway
+    volumes:
+      - ./db/migrations:/flyway/sql
+    command: -url=jdbc:postgresql://db:5432/teste -user=estracta -password=estracta migrate
+    depends_on:
+      - db
+
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - back
