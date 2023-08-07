@@ -2,17 +2,20 @@ import { AddCompanyModel, CompanyModel, CompanyUtils, DeleteCompanyModel, EditCo
 import { api, apiConfig } from '../../../_shared/http/Api';
 
 class CompanyService {
-  async getCompanies(params: Partial<GetCompaniesParams>): Promise<CompanyModel[]> {
+  async getCompanies(params: Partial<GetCompaniesParams>, config?: any): Promise<CompanyModel[]> {
     return api.get<CompanyModel[]>('/company/', {
-      ...apiConfig,
+      ...config,
       params,
     })
     .then(res  => res.data.map(CompanyUtils.fromJSON))
   }
 
-  async getTotalPages(): Promise<number> {
+  async getTotalPages(name?: string, config?: any): Promise<number> {
     return api.get<number>('/company/pages', {
-      ...apiConfig
+      ...config,
+      params: { 
+        ...(name ? { name } : {}),
+      }
     }).then((res) => res.data)
   }
 

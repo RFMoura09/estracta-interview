@@ -12,9 +12,9 @@ export const api = axios.create(apiConfig);
 api.interceptors.response.use(response => {
   return response;
 }, error => {
-  if (error.response.status === 401) {
-    _authService.logout();
-    window.location.replace("/login")
-  }
+  // if (error.response.status === 401) {
+  //   _authService.logout();
+  //   window.location.replace("/login")
+  // }
   return error;
 });

@@ -53,6 +53,7 @@ class GetPageCountSchema():
   def swagger_model():
     return {
       'entries': {'in': 'query', 'type': 'int'},
+      'name': {'in': 'query', 'type': 'string'},
     }
 
 class CompanyPutSchema(CompanySchema):

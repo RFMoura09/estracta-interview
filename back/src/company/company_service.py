@@ -35,14 +35,15 @@ class CompanyService():
 
       return companies
     
-    def get_companies_pages(self, entries: int):
+    def get_companies_pages(self, entries: int, name: str = None):
       conn = DbService.connect()
       cursor = conn.cursor()
       cursor.execute("""
         select get_companies_page_count(
-          _entries => %s
+          _entries => %s,
+          _name => %s
         )
-      """, [entries])
+      """, [entries, name])
       pages = int(cursor.fetchone()[0])
       cursor.close()
       conn.close()

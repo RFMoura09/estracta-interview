@@ -40,7 +40,7 @@ create or replace function get_companies(
 	select cnpj, name, fantasy_name, cnae
 	from companies
 	where 
-	case when _name is not null then name like '%' || _name || '%' else true end
+	case when _name is not null then lower(name) like '%' || lower(_name) || '%' else true end
 	order by
 	case when _order_cnpj then lower(cnpj) end asc,
 	case when _order_name then lower(name) end asc,
@@ -51,9 +51,13 @@ create or replace function get_companies(
 $$ language sql
 
 create or replace function get_companies_page_count(
-	_entries numeric default 25
+	_entries numeric default 25,
+	_name companies.name%type default null
 ) returns numeric as $$
-	select ceil(count(*) / _entries) from companies
+	select ceil(count(*) / _entries) 
+	from companies
+	where 
+	case when _name is not null then lower(name) like '%' || lower(_name) || '%' else true end
 $$ language sql
 
 create or replace function edit_company(

@@ -10,6 +10,8 @@ export default function TableData(props: TableDataProps) {
   const [emitPageChanged, setEmitPageChanged] = useState(false)
   const [headerSelected, changeHeaderSelected] = useState(-1)
 
+  const [search, setSearch] = useState('')
+
   const isFirstPage = currentPage === 0
   const isLastPage = currentPage === props.totalPages - 1
 
@@ -33,7 +35,29 @@ export default function TableData(props: TableDataProps) {
     props.onHeaderClick(headerSelected)
   }, [headerSelected])
 
+  const startSearch = () => {
+    goToPageAndEmit(0, false)
+    props.onSearch(search)
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      startSearch()
+    }
+  }
+
   return <>
+    <div className='md:flex items-stretch space-x-2'>
+      <div className="md:w-2/12">
+        <button onClick={startSearch}>Pesquisar</button>
+      </div>
+      <input 
+        value={search} 
+        onChange={(e) => setSearch(e.target.value)} 
+        onKeyDown={handleKeyDown}
+        type="text" 
+      />
+    </div>
     <div className={`grid min-w-[600px] md:w-full max-h-[60vh] overflow-scroll`} style={{
       gridTemplateColumns: `repeat(${props.headers.length}, 1fr)`
     }}>

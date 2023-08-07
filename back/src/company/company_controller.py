@@ -17,7 +17,10 @@ class GetPageCountController(Resource):
     def get(self):
         try:
             args = request.args
-            return companyService.get_companies_pages(args.get('entries') or 25), 200
+            return companyService.get_companies_pages(
+                entries=args.get('entries') or 25, 
+                name=args.get('name')
+            ), 200
         except Exception as e:
             return { 'error': str(e) }, 400
 
