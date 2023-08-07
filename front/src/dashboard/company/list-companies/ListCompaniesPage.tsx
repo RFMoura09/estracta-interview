@@ -7,7 +7,7 @@ import { useLoader } from '../../../_shared/ui/loader/LoaderContext'
 import { BsSearch } from 'react-icons/bs'
 import { _tokenService } from '../../../_shared/auth/TokenService'
 
-const headers = ['CNPJ', 'Nome', 'Nome Fantasia', 'CNAE']
+const headers = ['CNPJ', 'Nome Razão', 'Nome Fantasia', 'CNAE']
 
 export default function ListCompaniesPage() {
   const [companies, updateCompanies] = useState<CompanyModel[]>([])

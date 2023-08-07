@@ -47,16 +47,19 @@ export default function TableData(props: TableDataProps) {
   }
 
   return <>
-    <div className='md:flex items-stretch space-x-2'>
-      <div className="md:w-2/12">
+    <div className='md:flex items-stretch gap-2'>
+      <div className="md:w-2/12 hidden md:block">
         <button onClick={startSearch}>Pesquisar</button>
       </div>
-      <input 
-        value={search} 
-        onChange={(e) => setSearch(e.target.value)} 
-        onKeyDown={handleKeyDown}
-        type="text" 
-      />
+      <div className='md:w-10/12'>
+        <input 
+          value={search} 
+          onChange={(e) => setSearch(e.target.value)} 
+          onKeyDown={handleKeyDown}
+          placeholder='Nome Razão'
+          type="text" 
+        />
+      </div>
     </div>
     <div className={`grid min-w-[600px] md:w-full max-h-[60vh] overflow-scroll`} style={{
       gridTemplateColumns: `repeat(${props.headers.length}, 1fr)`
