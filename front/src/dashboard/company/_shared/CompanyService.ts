@@ -19,17 +19,23 @@ class CompanyService {
     }).then((res) => res.data)
   }
 
-  async addCompany(company: AddCompanyModel): Promise<void> {
-    return api.post('/company/', company)
+  async addCompany(company: AddCompanyModel, config?: any): Promise<void> {
+    return api.post('/company/', company, {
+      ...config,
+    })
   }
 
-  async editCompany(model: EditCompanyModel): Promise<void> {
+  async editCompany(model: EditCompanyModel, config?: any): Promise<void> {
     const { cnae, name_fantasy } = model
-    return api.put(`/company/${model.cnpj}`, { cnae, name_fantasy })
+    return api.put(`/company/${model.cnpj}`, { cnae, name_fantasy }, {
+      ...config,
+    })
   }
 
-  async deleteCompany(model: DeleteCompanyModel): Promise<void> {
-    return api.delete(`/company/${model.cnpj}`)
+  async deleteCompany(model: DeleteCompanyModel, config?: any): Promise<void> {
+    return api.delete(`/company/${model.cnpj}`, {
+      ...config,
+    })
   }
 }
 

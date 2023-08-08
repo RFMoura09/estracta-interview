@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { AddCompanyModel, CompanyUtils } from '../_shared/CompaniesModels';
 import { _companyService } from '../_shared/CompanyService';
 import { useNavigate } from 'react-router-dom';
+import { _tokenService } from '../../../_shared/auth/TokenService';
 
 
 export default function AddCompanyPage() {
@@ -19,7 +20,9 @@ export default function AddCompanyPage() {
 
   const addCompany = (data: AddCompanyModel) => {
     emitLoader(true)
-    _companyService.addCompany(CompanyUtils.toModel(data))
+    _companyService.addCompany(CompanyUtils.toModel(data), {
+      headers: {'authorization': 'bearer ' + _tokenService.getToken()}
+    })
     .then(() => {
       emitToast('Empresa Adicionada Com Sucesso!')
       navigate('/dashboard/company/list')

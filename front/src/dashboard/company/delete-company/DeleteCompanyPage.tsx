@@ -6,6 +6,7 @@ import { useToast } from '../../../_shared/ui/toast/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { _companyService } from '../_shared/CompanyService';
+import { _tokenService } from '../../../_shared/auth/TokenService';
 
 export default function DeleteCompanyPage() {
   const { emitToast } = useToast();
@@ -18,7 +19,9 @@ export default function DeleteCompanyPage() {
 
   const deleteCompany = (data: DeleteCompanyModel) => {
     emitLoader(true)
-    _companyService.deleteCompany(DeleteCompanyUtils.toModel(data))
+    _companyService.deleteCompany(DeleteCompanyUtils.toModel(data), {
+      headers: {'authorization': 'bearer ' + _tokenService.getToken()}
+    })
     .then(() => {
       emitToast('Empresa Deletada Com Sucesso!')
       navigate('/dashboard/company/list')

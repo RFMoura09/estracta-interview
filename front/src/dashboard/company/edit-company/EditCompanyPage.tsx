@@ -1,4 +1,3 @@
-import React from 'react'
 import PageTitle from '../../_shared/page-title/PageTitle'
 import InputMask from 'react-input-mask';
 import { CompanyUtils, EditCompanyModel, EditCompanyUtils } from '../_shared/CompaniesModels';
@@ -7,6 +6,7 @@ import { useToast } from '../../../_shared/ui/toast/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { _companyService } from '../_shared/CompanyService';
+import { _tokenService } from '../../../_shared/auth/TokenService';
 
 export default function EditCompanyPage() {
 
@@ -19,7 +19,9 @@ export default function EditCompanyPage() {
 
   const editCompany = (data: EditCompanyModel) => {
     emitLoader(true)
-    _companyService.editCompany(EditCompanyUtils.toModel(data))
+    _companyService.editCompany(EditCompanyUtils.toModel(data), {
+      headers: {'authorization': 'bearer ' + _tokenService.getToken()}
+    })
     .then(() => {
       emitToast('Empresa Editada Com Sucesso!')
       navigate('/dashboard/company/list')

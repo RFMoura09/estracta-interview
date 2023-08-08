@@ -2,7 +2,31 @@
 # BACK
 # -----------------------------------------------------------------------------------------
 
-back/venv
+back/.DS_Store
+# back/.env
+back/.flaskenv
+back/*.pyc
+back/*.pyo
+back/env/
+back/venv/
+back/.venv/
+back/env*
+back/dist/
+back/build/
+back/*.egg
+back/*.egg-info/
+back/.tox/
+back/.cache/
+back/.pytest_cache/
+back/.idea/
+back/docs/_build/
+back/.vscode
+
+# Coverage reports
+back/htmlcov/
+back/.coverage
+back/.coverage.*
+back/*,cover
 
 # -----------------------------------------------------------------------------------------
 # FRONT

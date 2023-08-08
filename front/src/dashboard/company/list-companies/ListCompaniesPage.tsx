@@ -4,7 +4,6 @@ import TableData from '../../_shared/table-data/TableData'
 import { _companyService } from '../_shared/CompanyService'
 import { CompanyModel } from '../_shared/CompaniesModels'
 import { useLoader } from '../../../_shared/ui/loader/LoaderContext'
-import { BsSearch } from 'react-icons/bs'
 import { _tokenService } from '../../../_shared/auth/TokenService'
 
 const headers = ['CNPJ', 'Nome Razão', 'Nome Fantasia', 'CNAE']
