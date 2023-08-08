@@ -60,3 +60,11 @@ make run-back
 make run-front
 ```
 
+### Testando a Aplicação
+- DB
+  - USER - estracta
+  - PASSWORD - estracta
+  - DATABASE - teste
+  - PORT - 5432
+- BACK - http://localhost:5000 (irá abrir o Swagger)
+- FRONT - http://localhost:3000
