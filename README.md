@@ -2,38 +2,61 @@
 ---
 Projeto fullstack de CRUD de Empresas (Flask, React, Postgres, Docker) para entrevista
 
-### Requisitos
-Basta ter o **Docker** instalado para rodar, mas se não tiver, segue os requisitos mínimos:
+O projeto contém:
+- Procedures Postgres
+- Validadores
+- Autenticação JWT
+- Swagger c/ Auth Header
+- Responsividade
+- Roteamento
+- Visualização de dados com paginação, ordenação e pesquisa
+- Adição, Edição e Exclusão de dados
+- Automação com Docker e Makefile
+
+## Requisitos
+Basta ter o **Docker** instalado para rodar, mas se optar por não usá-lo, seguem os requisitos mínimos:
 - Python v.3.10 acima
 - Postgres v.15 acima
 - Node v.16 acima
+- Makefile
 
-### Iniciar o projeto
+Se você estiver usando o Windows com o Chocolatey, basta digitar:
+```powershell
+choco install make
+choco install nodejs-lts
+choco install postgresql15
+choco install python
+``` 
 
-##### Com docker
+## Comandos
+
+#### Iniciar o Projeto
 ```bash
-# para rodar o projeto
+# roda o docker-compose
 make up
 
-# para parar o projeto
+# Se ocorrer algum problema ao rodar no docker-compose, 
+# tente rodar sem o build do backend, com os seguintes comandos:
+make up-no-back
+make create-back
+make run-back
+
+# para parar os containers
 make down
+
+# ou, se quiser rodar sem o docker-compose, digite
+make create-db
+make create-back
+make create-front
+make run-back
+make run-front
 ```
 
-##### Sem docker
+#### Rodar o projeto
 ```bash
-# BACK
-cd back
-python -m venv venv
-. ./venv/Scripts/activate
-pip install -r requirements.txt
-flask --app src/app.py --debug run
-
-#FRONT
-cd front
-npm install
-npm run dev
-
-# BANCO DE DADOS
-# (CREDENCIAIS EM /back/.env)
-psql -h localhost -d teste -U estracta -p 5432 -a -q -f [...]/db/migrations
+# uma vez já criado o projeto, você pode rodá-lo novamente com os comandos:
+make run-db
+make run-back
+make run-front
 ```
+
